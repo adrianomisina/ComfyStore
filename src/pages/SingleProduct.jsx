@@ -8,7 +8,7 @@ import { addItem } from '../features/cart/cartSlice';
 
 export const loader = async ({ params }) => {
   const response = await customFetch(`/products/${params.id}`)
-  return {product:response.data.data}
+  return { product: response.data.data }
 }
 
 const SingleProduct = () => {
@@ -32,13 +32,14 @@ const SingleProduct = () => {
     price: price,
     description: description,
     colors: colors,
-    company: company
+    company: company,
+    amount: amount,
   }
 
   const dispatch = useDispatch();
 
   const addToCart = () => {
-    dispatch(addItem({product:cartProduct}))
+    dispatch(addItem({ product: cartProduct }))
   }
 
   return (
@@ -57,10 +58,10 @@ const SingleProduct = () => {
       {/* PRODUCT */}
       <div className='mt-6 grid gap-y-8 lg:grid-cols-2 lg:gap-x-16'>
 
-      {/* IMAGE */}
+        {/* IMAGE */}
         <img src={image} alt={title} className='w-96 h-96 object-cover rounded-lg lg:w-full' />
 
-      {/* PRODUCT INFO   */}
+        {/* PRODUCT INFO   */}
         <div>
           <h1 className='capitalize text-3xl font-bold'>{title}</h1>
           <h4 className='text-xl text-neutral-content font-bold mt-2'>{company}</h4>
@@ -113,8 +114,8 @@ const SingleProduct = () => {
             >
               Add to bag
             </button>
-          </div>       
-       </div>
+          </div>
+        </div>
       </div>
     </section>
   )
